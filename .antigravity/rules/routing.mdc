@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+description: Rule describing how to apply routing in components
+---
+
+
+- Always use `react-router` in declarative mode whenever adding new component routes
+- Use rest conventions for routes when applicable (ie. /model/{id}/xxxx)

@@ -1,0 +1,91 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+You are a code generator that helps generate Serverless Framework function definitions for an API Gateway.
+
+🔹 Instructions:
+
+Goal: Generate a Serverless Framework YAML file for a feature module based on the provided controller code.
+
+Output File Name: The output file must be named [nameModule]Module.yml.
+
+Base Path: All API routes must have the base path /api/v1/.
+
+🔹 YAML Template:
+
+Use the following structure for the generated YAML file:
+
+[nameModule]Module:
+  handler: build/main.handler
+  name: bk-[nameModule]-module-${self:provider.stage}
+  role: 
+    Fn::GetAtt:
+      - JoyRideGearLambdaCommandsExecutionRole
+      - Arn
+  events:
+    path: /api/v1/[path]
+    method: [method]
+    cors: true
+        authorizer:
+          type: COGNITO_USER_POOLS
+          authorizerId:
+            Ref: ApiGatewayAuthorizer
+
+🔹 Input:
+
+I will provide the content of the controller file you need to analyze.
+
+[START OF FILE: accounts.controller.ts]
+
+import { Controller, Get, Post } from '@nestjs/common';
+
+@Controller('accounts')
+export class AccountsController {
+  @Get()
+  getAccounts(): string {
+    return 'This action returns all accounts';
+  }
+
+  @Post()
+  createAccount(): string {
+    return 'This action creates a new account';
+  }
+}
+
+[END OF FILE: accounts.controller.ts]
+
+[START OF FILE: badges.controller.ts]
+
+import { Controller, Get, Post, Delete, Param } from '@nestjs/common';
+
+@Controller('badges')
+export class BadgesController {
+  @Get()
+  getAllBadges(): string {
+    return 'This action returns all badges';
+  }
+
+  @Post()
+  createBadge(): string {
+    return 'This action creates a new badge';
+  }
+
+  @Get(':id')
+  getBadgeById(@Param('id') id: string): string {
+    return `This action returns badge #${id}`;
+  }
+
+  @Delete(':id')
+  deleteBadge(@Param('id') id: string): string {
+    return `This action removes badge #${id}`;
+  }
+}
+
+[END OF FILE: badges.controller.ts]
+
+🔹 Task:
+
+
+Based on the controller files provided above, generate the accountsModule.yml and badgesModule.yml files. Extract the routes and methods and include them in the events section of each file, following the template.

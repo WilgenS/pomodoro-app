@@ -1,0 +1,63 @@
+---
+alwaysApply: true
+description : Rule describing which libraries to employ in form management
+---
+
+
+- When developing forms you are always to use `zod` for schema validation, you are always to add basic schema validation
+- When developing forms you are always to use `react-hook-form` for state management along with the `zodResolver`
+- When developing forms you are always to use the shadcn/ui `form.tsx` components
+
+EXAMPLE
+
+```jsx
+  import { Button } from "@/components/ui/button"
+  import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+  } from "@/components/ui/form"
+  import { Input } from "@/components/ui/input"
+  import { zodResolver } from "@hookform/resolvers/zod"
+  import { useForm } from "react-hook-form"
+  const formSchema = z.object({
+    username: z.string().min(2, {
+      message: "Username must be at least 2 characters.",
+    }),
+  })
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "",
+    },
+  })
+
+
+  export function ProfileForm() {
+    return(
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input placeholder="username" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
+    )
+  }
+
+```

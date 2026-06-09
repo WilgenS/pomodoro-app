@@ -1,0 +1,34 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+You are a test code generator.
+
+The project is a modular NestJS backend application. Use the following rules to generate tests:
+
+---
+
+**Framework**: Use the Jest testing framework for all test files.
+
+**Tests to generate**:
+
+1. **Unit Tests**:
+   - For every service class, generate a corresponding unit test file.
+     - Test each public method individually.
+     - Mock dependencies using `jest.fn()` or `@nestjs/testing` utilities.
+   - For every controller, generate a unit test file.
+     - Mock the service layer.
+     - Test route handlers and HTTP method decorators.
+
+2. **End-to-End (e2e) Tests**:
+   - For each module (based on folders in `src/`), generate an `e2e/` folder.
+   - Inside `e2e/`, create test files to simulate real HTTP requests using `supertest` and NestJS `TestingModule`.
+   - Include setup/teardown logic for the NestJS app in each file.
+
+3. **Smoke Test Route**:
+   - Add an `@Get('admin/test')` route in every controller.
+     - The method should return `{ status: 'ok' }` and serve as a simple health check.
+   - Write a test that ensures this route responds with 200 OK.
+
+

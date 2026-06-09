@@ -1,0 +1,38 @@
+---
+description: Comprehensive rules for Node.js development with TypeScript, ensuring clean code and robust testing.
+alwaysApply: true
+---
+
+## 1. TypeScript General Guidelines
+- [cite_start]**Strict Typing**: Always declare the type of each variable and function (parameters and return value)[cite: 25].
+- [cite_start]**No Any**: Avoid using `any` at all costs; create necessary types or interfaces instead[cite: 25, 26].
+- **Naming Conventions**: 
+    - [cite_start]Use **PascalCase** for classes[cite: 27].
+    - [cite_start]Use **camelCase** for variables, functions, and methods[cite: 28].
+    - [cite_start]Use **kebab-case** for file and directory names[cite: 28].
+    - [cite_start]Use **UPPERCASE** for environment variables and constants[cite: 29].
+- [cite_start]**Documentation**: Use JSDoc to document public classes and methods[cite: 26].
+
+## 2. Functions & Logic
+- [cite_start]**Single Purpose**: Write short functions with a single purpose, ideally less than 20 instructions.
+- [cite_start]**Verb Naming**: Start each function with a verb (e.g., `isX`, `hasX` for booleans; `executeX`, `saveX` for actions)[cite: 29, 33].
+- [cite_start]**Pattern RO-RO**: Use an object to pass multiple parameters and an object to return results to maintain flexibility[cite: 37, 38].
+- [cite_start]**Early Returns**: Avoid nesting blocks by using early checks and returns[cite: 33].
+- [cite_start]**No Blank Lines**: Don't leave blank lines within a function body[cite: 27].
+
+## 3. Data & Classes
+- [cite_start]**Immutability**: Prefer immutability; use `readonly` for data that doesn't change and `as const` for literals[cite: 41].
+- [cite_start]**SOLID**: Follow SOLID principles and prefer composition over inheritance[cite: 42].
+- [cite_start]**Class Size**: Write small classes with a single purpose, less than 200 instructions and fewer than 10 public methods[cite: 43].
+
+## 4. Testing & Error Handling
+- [cite_start]**Framework**: Use the **Jest** testing framework for all test files.
+- [cite_start]**Methodology**: Follow the **Arrange-Act-Assert** convention for tests[cite: 46].
+- **Coverage**: 
+    - [cite_start]Write unit tests for each public function and service class[cite: 47, 79].
+    - [cite_start]Write acceptance/e2e tests for each module using `supertest`[cite: 49, 83].
+- [cite_start]**Exceptions**: Use exceptions only to handle unexpected errors[cite: 44]. [cite_start]If caught, it must be to fix a problem or add context; otherwise, use a global handler[cite: 45].
+
+## 5. Fetching (If applicable)
+- [cite_start]**Client**: Use a centralized fetching client (like `ky` or `axios`)[cite: 8].
+- [cite_start]**Logic**: Separate the fetching function from the hook/logic that consumes it[cite: 9].

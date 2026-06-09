@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  avatar       String?
+  provider     String
+  refreshToken String?
+  createdAt    DateTime @default(now())
+
+  tasks    PomodoroTask[]
+  sessions PomodoroSession[]
+}
+
+model PomodoroTask {
+  id                 String   @id @default(uuid())
+  title              String
+  description        String?
+  completedPomodoros Int      @default(0)
+  estimatedPomodoros Int
+  status             String   @default("TODO")
+  createdAt          DateTime @default(now())
+  
+  userId             String
+  user               User     @relation(fields: [userId], references: [id])
+  
+  sessions           PomodoroSession[]
+
+  @@index([userId])
+}
+
+model PomodoroSession {
+  id        String   @id @default(uuid())
+  startedAt DateTime
+  endedAt   DateTime?
+  duration  Int      // e.g., duration in seconds
+  
+  taskId    String
+  task      PomodoroTask @relation(fields: [taskId], references: [id])
+  
+  userId    String
+  user      User         @relation(fields: [userId], references: [id])
+
+  @@index([taskId])
+  @@index([userId])
+}

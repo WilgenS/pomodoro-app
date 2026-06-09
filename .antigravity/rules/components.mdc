@@ -1,0 +1,16 @@
+---
+alwaysApply: true
+description : Rule describing which components to use and how
+---
+
+- Always use shadcn/ui components when implementing UI elements
+- Always use tailwind classes for styling components never prefer regular css
+- For loading states you are always to build a skeleton UI `using src/components/ui/skeleton.tsx`
+- Always display when errors have ocurrend within the UI, do NOT block other components within the parent
+  display errors and disrupt the user as little as possible while still being informative
+- Always prefer adding a new shadcn/ui component for the functionality
+  (ie. tooltips, popovers, calendars) than implementing your own
+- Research for already implemented alternatives like packages
+- DO NOT use or install other component libraries and prefer headless solutions
+- Keep brand styling and consistency by using the index.css to tweak globals
+- Prefer reusability over separation

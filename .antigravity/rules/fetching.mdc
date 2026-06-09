@@ -1,0 +1,42 @@
+---
+alwaysApply: true
+description : Rule describing what libraries to use and how when fetching data
+---
+
+- Always use `@tanstack/react-query` when fetching something whether it be from the network or localStorage
+- Always create a separate reusable and typed hooks
+- Always check for a already created hook in the codebase before implementing one
+- Always use the `ky` instance `apiClient` in `src/lib/utils.ts` as the fetching client
+- Always be sure to use proper `queryKey`s when creating hooks that allow for maintainable and performant caching
+- Always add `queryClient.prefetchQueries` when applicable and perfomant
+- Always add optimistic UI updates by way of `queryClient.invalidateQueries`
+- Always separate the `queryFn` from the `useQuery` hook
+- For error handling and on success states always use the callbacks
+- NEVER USE mutateAsync and Try Catch
+- Always prefer using the api response message decode it using `ky`s
+beforeError or similar property
+
+
+EXAMPLE IMPLEMENTATION:
+
+```typescript
+interface ApiResponse<T>{
+    data :  T
+}
+
+interface Todo {
+    task : string
+}
+
+function fetchTodo(id: string) {
+    return apiClient.get(`/todo/${id}`).json<ApiResponse<Todo>>()
+}
+
+function useTodo(id: string, options?: UseQueryOptions<ApiResponse<Todo>, Error>) {
+    return useQuery({
+        queryFn: () => fetchTodo(id),
+        queryKey: ['todo', id],
+        ...options
+    })
+}
+```
