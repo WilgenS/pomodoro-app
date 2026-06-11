@@ -33,33 +33,33 @@ export function TaskForm({ onSubmit, isLoading, initialData, onCancel }: TaskFor
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 rounded-lg border bg-white p-6 shadow-sm">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm transition-colors duration-300">
       <div>
-        <label className="block text-sm font-medium text-gray-700">Title</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-slate-300">Title</label>
         <input
           {...register('title')}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+          className="mt-1 block w-full rounded-md border border-gray-300 dark:border-slate-750 bg-white dark:bg-slate-850 px-3 py-2 text-slate-900 dark:text-white shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
           placeholder="What needs to be done?"
         />
         {errors.title && <p className="mt-1 text-xs text-red-500">{errors.title.message}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Description (Optional)</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-slate-300">Description (Optional)</label>
         <textarea
           {...register('description')}
           rows={3}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+          className="mt-1 block w-full rounded-md border border-gray-300 dark:border-slate-750 bg-white dark:bg-slate-850 px-3 py-2 text-slate-900 dark:text-white shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
           placeholder="Add some details..."
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Estimated Pomodoros</label>
+        <label className="block text-sm font-medium text-gray-700 dark:text-slate-300">Estimated Pomodoros</label>
         <input
           type="number"
           {...register('estimatedPomodoros', { valueAsNumber: true })}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
+          className="mt-1 block w-full rounded-md border border-gray-300 dark:border-slate-750 bg-white dark:bg-slate-850 px-3 py-2 text-slate-900 dark:text-white shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
         />
         {errors.estimatedPomodoros && <p className="mt-1 text-xs text-red-500">{errors.estimatedPomodoros.message}</p>}
       </div>
@@ -69,7 +69,7 @@ export function TaskForm({ onSubmit, isLoading, initialData, onCancel }: TaskFor
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            className="rounded-md border border-gray-300 dark:border-slate-750 bg-white dark:bg-slate-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-700"
           >
             Cancel
           </button>

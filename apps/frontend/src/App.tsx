@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ProtectedRoute } from './components/auth/protected-route';
 import DashboardLayout from './components/layout/DashboardLayout';
@@ -6,9 +7,20 @@ import TasksPage from './pages/TasksPage';
 import TimerPage from './pages/TimerPage';
 import StatsPage from './pages/StatsPage';
 import { useAuth } from './hooks/useAuth';
+import { useThemeStore } from './store/theme.store';
 
 function App() {
   const { isLoading } = useAuth();
+  const theme = useThemeStore((state) => state.theme);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [theme]);
 
   if (isLoading) {
     return (
