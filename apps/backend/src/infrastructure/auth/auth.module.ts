@@ -19,6 +19,8 @@ import { PrismaUserRepository } from '../database/repositories/prisma-user.repos
 import { GoogleLoginUseCase } from '../../application/use-cases/auth/google-login.use-case';
 import { RefreshTokenUseCase } from '../../application/use-cases/auth/refresh-token.use-case';
 import { LogoutUseCase } from '../../application/use-cases/auth/logout.use-case';
+import { CredentialsRegisterUseCase } from '../../application/use-cases/auth/credentials-register.use-case';
+import { CredentialsLoginUseCase } from '../../application/use-cases/auth/credentials-login.use-case';
 
 import { PrismaService } from '../database/prisma.service';
 
@@ -71,6 +73,16 @@ import { PrismaService } from '../database/prisma.service';
       provide: LogoutUseCase,
       useFactory: (userRepo) => new LogoutUseCase(userRepo),
       inject: [USER_REPOSITORY],
+    },
+    {
+      provide: CredentialsRegisterUseCase,
+      useFactory: (userRepo, tokenSvc, hashSvc) => new CredentialsRegisterUseCase(userRepo, tokenSvc, hashSvc),
+      inject: [USER_REPOSITORY, TOKEN_SERVICE, HASH_SERVICE],
+    },
+    {
+      provide: CredentialsLoginUseCase,
+      useFactory: (userRepo, tokenSvc, hashSvc) => new CredentialsLoginUseCase(userRepo, tokenSvc, hashSvc),
+      inject: [USER_REPOSITORY, TOKEN_SERVICE, HASH_SERVICE],
     },
   ],
 })

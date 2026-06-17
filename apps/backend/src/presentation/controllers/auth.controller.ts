@@ -5,6 +5,8 @@ import type { Response, Request } from 'express';
 import { GoogleLoginUseCase } from '../../application/use-cases/auth/google-login.use-case';
 import { RefreshTokenUseCase } from '../../application/use-cases/auth/refresh-token.use-case';
 import { LogoutUseCase } from '../../application/use-cases/auth/logout.use-case';
+import { CredentialsRegisterUseCase, CredentialsRegisterDto } from '../../application/use-cases/auth/credentials-register.use-case';
+import { CredentialsLoginUseCase, CredentialsLoginDto } from '../../application/use-cases/auth/credentials-login.use-case';
 import { JwtAuthGuard } from '../../infrastructure/auth/guards/jwt-auth.guard';
 import { JwtRefreshGuard } from '../../infrastructure/auth/guards/jwt-refresh.guard';
 import { GoogleOauthGuard } from '../../infrastructure/auth/guards/google-oauth.guard';
@@ -21,6 +23,8 @@ export class AuthController {
     private readonly googleLoginUseCase: GoogleLoginUseCase,
     private readonly refreshTokenUseCase: RefreshTokenUseCase,
     private readonly logoutUseCase: LogoutUseCase,
+    private readonly credentialsRegisterUseCase: CredentialsRegisterUseCase,
+    private readonly credentialsLoginUseCase: CredentialsLoginUseCase,
   ) { }
 
   @Get('google')
@@ -81,6 +85,54 @@ export class AuthController {
     res.clearCookie('refresh_token');
 
     return res.json({ success: true });
+  }
+
+  @Post('register')
+  @ApiOperation({ summary: 'Register a new user' })
+  async register(@Body() body: CredentialsRegisterDto, @Res() res: Response) {
+    const tokens = await this.credentialsRegisterUseCase.execute(body);
+
+    res.cookie('access_token', tokens.accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    });
+
+    res.cookie('refresh_token', tokens.refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    });
+
+    return res.json({
+      success: true,
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+    });
+  }
+
+  @Post('login')
+  @ApiOperation({ summary: 'Login user with email' })
+  async login(@Body() body: CredentialsLoginDto, @Res() res: Response) {
+    const tokens = await this.credentialsLoginUseCase.execute(body);
+
+    res.cookie('access_token', tokens.accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    });
+
+    res.cookie('refresh_token', tokens.refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    });
+
+    return res.json({
+      success: true,
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+    });
   }
 
   @Get('me')
