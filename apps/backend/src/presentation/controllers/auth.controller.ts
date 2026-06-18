@@ -39,7 +39,7 @@ export class AuthController {
     const tokens = await this.googleLoginUseCase.execute(req.user);
     const state = req.query.state as string;
 
-    if (state && (state.startsWith('pomodoro://') || state.startsWith('exp://'))) {
+    if (state && (state.startsWith('pomodoro://') || state.startsWith('exp://') || state.startsWith('http://localhost:'))) {
       const separator = state.includes('?') ? '&' : '?';
       return res.redirect(`${state}${separator}access_token=${tokens.accessToken}&refresh_token=${tokens.refreshToken}`);
     }

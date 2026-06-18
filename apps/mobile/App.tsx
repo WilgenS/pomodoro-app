@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Linking } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -49,6 +49,11 @@ export default function App() {
           // Set the final authenticated state with real user profile
           setAuth(userProfile, accessToken, refreshToken);
           console.log('Successfully authenticated user via Google Login:', userProfile.email);
+
+          // If running in browser (React Native Web), clean the token query parameters from the address bar
+          if (Platform.OS === 'web') {
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
         }
       } catch (error) {
         console.error('Failed to authenticate via deep link:', error);

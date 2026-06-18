@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Linking } from 'react-native';
+import { ActivityIndicator, Linking, Platform } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { Timer } from 'lucide-react-native';
 import { CONFIG } from '../constants/config';
@@ -51,9 +51,10 @@ export default function LoginScreen() {
     setLoading(true);
     setErrorMsg(null);
     try {
-      const apiBaseUrl = CONFIG.API_URL.replace('/api', '');
-      const redirectUri = 'pomodoro://auth-callback';
-      const authUrl = `${apiBaseUrl}/auth/google?state=${encodeURIComponent(redirectUri)}`;
+      const redirectUri = Platform.OS === 'web'
+        ? window.location.origin
+        : 'pomodoro://auth-callback';
+      const authUrl = `${CONFIG.API_URL}/auth/google?state=${encodeURIComponent(redirectUri)}`;
       
       await Linking.openURL(authUrl);
       
