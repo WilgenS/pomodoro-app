@@ -80,7 +80,7 @@ api.interceptors.response.use(
           })
           .then((res) => {
             const { accessToken: newAccessToken, refreshToken: newRefreshToken } = res.data;
-            
+
             // We get the current user metadata or fetch it if needed, but since we are just updating tokens:
             const user = useAuthStore.getState().user;
             if (user) {

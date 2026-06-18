@@ -171,3 +171,28 @@ export const FooterText = styled.Text`
   margin-top: 40px;
   margin-bottom: 16px;
 `;
+
+export const GoogleButton = styled.TouchableOpacity`
+  flex-direction: row;
+  height: 52px;
+  border-radius: 14px;
+  border-width: 1px;
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  shadow-color: #000;
+  shadow-offset: 0px 2px;
+  shadow-opacity: 0.05;
+  shadow-radius: 3px;
+  elevation: 2;
+  width: 100%;
+`;
+
+export const GoogleButtonText = styled.Text`
+  color: #334155;
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 12px;
+`;

@@ -37,6 +37,12 @@ export class AuthController {
   @ApiOperation({ summary: 'Google OAuth2 callback' })
   async googleAuthRedirect(@Req() req: AuthenticatedGoogleRequest, @Res() res: Response) {
     const tokens = await this.googleLoginUseCase.execute(req.user);
+    const state = req.query.state as string;
+
+    if (state && (state.startsWith('pomodoro://') || state.startsWith('exp://'))) {
+      const separator = state.includes('?') ? '&' : '?';
+      return res.redirect(`${state}${separator}access_token=${tokens.accessToken}&refresh_token=${tokens.refreshToken}`);
+    }
 
     res.cookie('access_token', tokens.accessToken, {
       httpOnly: true,

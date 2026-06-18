@@ -5,7 +5,6 @@ import { useAuthStore } from '../store/auth.store';
 
 // Screens
 import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import PomodoroScreen from '../screens/PomodoroScreen';
 import TasksScreen from '../screens/TasksScreen';
@@ -82,10 +81,7 @@ export default function AppNavigator() {
       {isAuthenticated ? (
         <Stack.Screen name="Main" component={MainTabs} />
       ) : (
-        <>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-        </>
+        <Stack.Screen name="Login" component={LoginScreen} />
       )}
     </Stack.Navigator>
   );
