@@ -34,7 +34,7 @@ export const HeaderTitleGroup = styled.View`
 export const Title = styled.Text`
   font-size: 34px;
   font-weight: 800;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
 `;
 
 export const Subtitle = styled.Text`
@@ -175,7 +175,7 @@ export const TaskInfo = styled.View`
 export const TaskTitle = styled.Text<{ isCompleted?: boolean }>`
   font-size: 16px;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
   text-decoration-line: ${(props) => (props.isCompleted ? 'line-through' : 'none')};
 `;
 

@@ -156,7 +156,7 @@ export default function DashboardScreen() {
               <GridLine />
               <GridLine />
             </ChartGridLines>
-            
+
             <ChartBars>
               {weeklyData.map((data, index) => (
                 <BarWrapper key={index}>
@@ -176,10 +176,10 @@ export default function DashboardScreen() {
             <SectionTitleGroup>
               <SectionTitle>Focus Distribution</SectionTitle>
             </SectionTitleGroup>
-            
+
             <DistributionList>
               {[
-                { label: 'Deep Work', value: '65%', width: '65%', color: theme.colors.text },
+                { label: 'Deep Work', value: '65%', width: '65%', color: theme.colors.textTitle },
                 { label: 'Short Breaks', value: '20%', width: '20%', color: '#64748b' },
                 { label: 'Long Breaks', value: '15%', width: '15%', color: '#cbd5e1' },
               ].map((item, index) => (

@@ -28,7 +28,7 @@ export const Header = styled.View`
 export const Title = styled.Text`
   font-size: 34px;
   font-weight: 800;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
 `;
 
 export const Subtitle = styled.Text`
@@ -82,7 +82,7 @@ export const CardLabel = styled.Text`
 export const CardValue = styled.Text`
   font-size: 30px;
   font-weight: 800;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
   margin-top: 2px;
 `;
 
@@ -116,7 +116,7 @@ export const SectionTitleGroup = styled.View`
 export const SectionTitle = styled.Text`
   font-size: 18px;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
 `;
 
 export const SectionSubtitle = styled.Text`

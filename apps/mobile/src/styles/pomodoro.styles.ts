@@ -31,7 +31,7 @@ export const BadgeText = styled.Text`
 export const Title = styled.Text`
   font-size: 34px;
   font-weight: 800;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
   margin-top: 12px;
 `;
 
@@ -74,7 +74,7 @@ export const TimeLabelGroup = styled.View`
 export const TimeText = styled.Text`
   font-size: 56px;
   font-weight: 800;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
 `;
 
 export const ModeBadge = styled.View`
@@ -196,7 +196,7 @@ export const GoalLabel = styled.Text`
 export const GoalTitle = styled.Text`
   font-size: 15px;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
   margin-top: 2px;
 `;
 
@@ -207,7 +207,7 @@ export const GoalProgress = styled.View`
 export const ProgressValue = styled.Text`
   font-size: 15px;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
   margin-top: 2px;
 `;
 

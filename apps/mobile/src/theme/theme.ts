@@ -2,6 +2,7 @@ export const lightTheme = {
   colors: {
     background: '#ffffff',
     text: '#0f172a',
+    textTitle: '#0f172a',
     textMuted: '#64748b',
     primary: '#ef4444', // Red-500
     primaryForeground: '#fef2f2',
@@ -40,7 +41,8 @@ export const lightTheme = {
 export const darkTheme = {
   colors: {
     background: '#090d16', // Slate-950 dark
-    text: '#f8fafc',
+    text: '#0f172a',
+    textTitle: '#ffffff',
     textMuted: '#94a3b8',
     primary: '#ef4444',
     primaryForeground: '#fef2f2',

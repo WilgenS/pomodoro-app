@@ -37,7 +37,7 @@ export const AvatarImage = styled.Image`
 export const UserName = styled.Text`
   font-size: 24px;
   font-weight: 800;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
   margin-top: 16px;
 `;
 
@@ -80,7 +80,7 @@ export const StatsCard = styled.View`
 export const StatsTitle = styled.Text`
   font-size: 15px;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
   margin-bottom: 20px;
 `;
 
@@ -98,7 +98,7 @@ export const GridItem = styled.View`
 export const GridValue = styled.Text`
   font-size: 18px;
   font-weight: 800;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
 `;
 
 export const GridLabel = styled.Text`
@@ -149,7 +149,7 @@ export const IconCircle = styled.View<{ bgColor: string }>`
 export const OptionLabel = styled.Text`
   font-size: 15px;
   font-weight: 600;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.textTitle};
 `;
 
 export const DividerHorizontal = styled.View`
